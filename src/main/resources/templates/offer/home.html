@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{base :: head}">
+</head>
+
+<body onload="onLoad()">
+    <div th:replace="~{base :: headerContainer}"></div>
+    <div class="container" id="offers">
+
+        <div class="card mb-3" th:each="productOrders : ${productOrders}">
+            <div class="card-header d-flex justify-content-between">
+                <div th:text="${productOrders.productName}"> Product Name</div>
+                <form method="POST" th:action="@{'/productOrders/delete/' + ${productOrders.id}}">
+                    <button type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-trash" viewBox="0 0 16 16">
+                            <path
+                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            <div class="d-flex p-3">
+                <div class="w-75 d-grid ">
+                    <div class="p-1"><b>Status: </b> <span th:text="${productOrders.status}"></span></div>
+                    <div class="p-1"><b>Product Url</b></div>
+
+                    <div class="p-1"><input disabled class="form-control" th:value="${productOrders.productUrl}"
+                            value="product url" />
+                    </div>
+
+                    <div class="p-1"><b>Description</b></div>
+                    <div class="p-1">
+                        <textarea disabled class="form-control"
+                            th:text="${productOrders.description}">Product Description</textarea>
+                    </div>
+                </div>
+
+                <div class="w-25 d-flex justify-content-center align-items-center">
+                    <img th:src="${productOrders.imageUrl}" alt="image" style="width: 80%; height: 80%;" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function onLoad() {
+            var app = new Vue({
+                el: "#offers",
+                data: {
+                    orders: []
+                }
+            });
+        }
+    </script>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</body>
+
+</html>

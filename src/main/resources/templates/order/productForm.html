@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{base :: head}">
+</head>
+
+<body>
+<div th:replace="~{base :: headerContainer}"></div>
+<div class="container">
+    <div class="card mt-3">
+        <form th:action="@{/productOrders/new}" th:object="${newOrderRequest}" class="card-body" method="POST">
+            <div class="form-group mt-2">
+                <label>Product</label>
+                <input th:field="*{productName}" class="form-control" placeholder="Product Name"/>
+                <small>Inform the product name</small>
+            </div>
+            <div class="form-group mt-2">
+                <label>Url</label>
+                <input th:field="*{productUrl}" class="form-control" placeholder="Product Url"/>
+                <small>Search on any website the wanted product</small>
+            </div>
+            <div class="form-group mt-2">
+                <label>Image</label>
+                <input th:field="*{productImage}" class="form-control" placeholder="Image url"/>
+                <small>Insert the Product Image url</small>
+            </div>
+            <div class="form-group mt-2">
+                <label>Description</label>
+                <textarea th:field="*{productDescription}" class="form-control"
+                          placeholder="Product description"></textarea>
+                <small>Insert here the product description</small>
+            </div>
+
+            <div class="d-flex float-end mt-3">
+                <!--                <a href="/home">-->
+                <!--                    <button class="btn btn-outline-danger">Cancel</button>-->
+                <!--                </a>-->
+                <button type="submit" class="btn btn-outline-success ms-3">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+
+</html>
